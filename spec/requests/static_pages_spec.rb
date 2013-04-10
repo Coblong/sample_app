@@ -4,15 +4,15 @@ describe "Static pages" do
 
   describe "Home page" do
 
-    it "should have the content 'Sample App'" do
+    it "should have the content 'Timekeeper'" do
       visit '/static_pages/home'
-      page.should have_selector('h1', :text => 'Sample App')
+      page.should have_selector('h1', :text => 'Timekeeper')
     end
 
     it "should have the right title" do
       visit '/static_pages/home'
       page.should have_selector('title', 
-        :text => "Ruby on Rails Tutorial Sample App")
+        :text => "Timekeeper")
     end
   end
 
@@ -26,7 +26,7 @@ describe "Static pages" do
     it "should have the right title" do
       visit '/static_pages/help'
       page.should have_selector('title', 
-        :text => "Ruby on Rails Tutorial Sample App | Help")
+        :text => "Timekeeper | Help")
     end
   end
 
@@ -40,7 +40,7 @@ describe "Static pages" do
     it "should have the right title" do
       visit '/static_pages/about'
       page.should have_selector('title', 
-        :text => "Ruby on Rails Tutorial Sample App | About")
+        :text => "Timekeeper | About")
     end
   end
 end
