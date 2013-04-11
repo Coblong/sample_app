@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])    
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Timekeeper!"
+      flash[:success] = "Welcome to Shift Manager!"
       redirect_to @user
     else
       render 'new'
