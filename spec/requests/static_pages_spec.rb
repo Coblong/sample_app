@@ -11,7 +11,7 @@ describe "Static pages" do
 
   describe "Home page" do
     before { visit root_path }
-    let(:heading)    { 'Shift Manager' }
+    let(:heading)    { 'EA Control' }
     let(:page_title) { '' }
     it_should_behave_like "all static pages"
     it { should_not have_selector 'title', text: '| Home' }
@@ -46,9 +46,11 @@ describe "Static pages" do
     page.should have_selector 'title', text: full_title('Help')
     click_link "Contact"
     page.should have_selector 'title', text: full_title('Contact')
+    click_link "Sign in"
+    page.should have_selector 'title', text: full_title('Sign in')
     click_link "Sign up now!"
     page.should have_selector 'title', text: full_title('Sign up')
-    click_link "Shift Manager"
+    click_link "EA Control"
     page.should have_selector 'title', text: full_title('')
   end
 end
