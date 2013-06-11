@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships
-
+  has_many :robots, dependent: :destroy
+  has_many :robot_configs, dependent: :destroy
+  
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 

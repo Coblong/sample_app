@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, :initialize_forms
   before_filter :correct_user,   only: :destroy
 
   def create
@@ -16,6 +16,9 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost.destroy
     redirect_to root_url
+  end
+
+  def index
   end
 
   private

@@ -1,0 +1,25 @@
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable(<%= raw robot.for_graph -%>);
+    drawEquityChart(<%= robot.id %>, data);       
+  }  
+</script>
+<div class="span8">
+  <!-- Chart -->
+  <div class="box">      
+    <div id="<%= robot.id %>"></div>
+  </div>
+</div>
+<div class="span4">
+  <div class="well details">
+    <!-- details -->
+    <ol>
+      <li><%= link_to robot.name, robot %></li>
+      <li><%= link_to robot.user.name, robot.user %></li>
+      <li>3.2%</li>
+      <li>1.8%</li>
+      <li><%= robot.updated_at.strftime("%Y-%m-%d %H:%M")  %></li>
+    </ol>
+</div>

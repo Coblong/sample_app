@@ -1,6 +1,7 @@
 class Micropost < ActiveRecord::Base
   attr_accessible :content   
   belongs_to :user
+  belongs_to :robot_config
   
   validates :content, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true  

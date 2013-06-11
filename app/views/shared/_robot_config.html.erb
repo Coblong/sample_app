@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable(<%= raw robot_config.robot.for_equity_chart(robot_config) -%>);
+    drawEquityChart(<%= robot_config.id %>, data);       
+  }  
+</script>
+<div id="<%= robot_config.id %>"></div>
+<div class="details box_shadow">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Symbol</th>
+        <th>Profit Factor</th>
+        <th>Drawdown</th>
+        <th>Updated Date</th>
+      </tr>
+    </thead>
+    <tr>
+      <td><%= link_to robot_config.robot.user.name, robot_config.robot.user %></td>
+      <td><%= link_to robot_config.robot.name, robot_config.robot %></td>
+      <td><%= robot_config.real_profit_factor %>%</td>
+      <td><%= robot_config.real_drawdown %>%</td>
+      <td><%= robot_config.updated_at.strftime("%Y-%m-%d %H:%M")  %></td>
+    </tr>
+  </table>  
+</div>
+<br>

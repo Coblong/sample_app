@@ -1,0 +1,7 @@
+<%= form_for(@robot) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <h5>Upload your backtest report</h5>
+  <%= f.file_field :report, style:'border:none;padding:0px' %>
+  <%= f.text_field :upload_comment, placeholder: 'Add a comment if you like...' %>
+  <%= f.submit "Upload", class: "btn btn-small btn-primary" %>
+<% end %>

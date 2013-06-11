@@ -1,0 +1,57 @@
+      <!-- details -->
+      <table id="robot-title">
+        <tr>
+          <td><%= gravatar_for @robot.user, size: 52 %></td>
+          <td valign="top"><big><b><%= @robot.name %></b></big><small> by <%= link_to @robot.user.name, @robot.user %></small></td>
+        </tr>
+      </table>
+      <table id="robot-details">
+<% if @robot_config.instance_number == 1 %>
+        <tr>          
+          <td width="45%">Gross Profit</td>
+          <td>£23,432.15</td>
+        </tr>
+        <tr>          
+          <td width="45%">Net Profit</td>
+          <td>£12,231.23</td>
+        </tr>
+        <tr>          
+          <td>Profit Factor</td>
+          <td><%= @robot_config.profit_factor %>% (<%= @robot_config.real_profit_factor %>%)</td>
+        </tr>
+        <tr>
+          <td>Drawdown</td>
+          <td><%= @robot_config.relative_drawdown %>% (<%= @robot_config.real_drawdown %>%)</td>
+        </tr>
+        <tr>
+          <td>Trades</td>
+          <td>125</td>
+        </tr>
+<% else %>
+        <tr>          
+          <td width="45%">Gross Profit</td>
+          <td>£23,432.15</td>
+        </tr>
+        <tr>          
+          <td width="45%">Net Profit</td>
+          <td>£12,231.23</td>
+        </tr>
+        <tr>
+          <td>Profit Factor</td>
+          <td><%= @robot_config.real_profit_factor %>%</td>
+        </tr>
+        <tr>
+          <td>Drawdown</td>
+          <td><%= @robot_config.real_drawdown %>%</td>          
+        </tr>
+        <tr>
+          <td>Trades</td>
+          <td>231</td>
+        </tr>
+<% end %>        
+        </tr>
+        <tr>
+          <td>Updated</td>
+          <td><%= @robot.updated_date  %></td>
+        </tr>
+      </table>

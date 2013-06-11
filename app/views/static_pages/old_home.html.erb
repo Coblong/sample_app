@@ -1,0 +1,82 @@
+<% provide(:title, 'Home') %>
+
+<script type="text/javascript">
+  Array.prototype.reduce = undefined;
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data1 = google.visualization.arrayToDataTable(
+      <%= raw @robots.first.for_graph -%>);
+    var data2 = google.visualization.arrayToDataTable(
+      <%= raw @robots.second.for_graph -%>);
+    var data3 = google.visualization.arrayToDataTable(
+      <%= raw @robots.third.for_graph -%>);
+    var options1 = {
+        title: '<%= @robots.first.name %>',
+        legend: 'none',
+        animation:{
+          duration: 1000,
+          easing: 'out',
+        }
+      };
+    var options2 = {
+        title: '<%= @robots.second.name %>',
+        legend: 'none',
+        animation:{
+          duration: 1000,
+          easing: 'out',
+        }
+      };
+    var options3 = {
+        title: '<%= @robots.third.name %>',
+        legend: 'none',
+        animation:{
+          duration: 1000,
+          easing: 'out',
+        }
+      };
+        
+      var chart = new google.visualization.LineChart(document.getElementById(<%= @robots.first.id %>));
+      chart.draw(data1, options1);
+      var chart2 = new google.visualization.LineChart(document.getElementById(<%= @robots.second.id %>));
+      chart2.draw(data2, options2);
+      var chart3 = new google.visualization.LineChart(document.getElementById(<%= @robots.third.id %>));
+      chart3.draw(data3, options3);
+    }
+</script>
+
+<h2>Welcome to EA Control</h2>
+<% if @robots.any? %>
+<div class="robot">
+  <div id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    </ol>
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <div class="active item"><center><%= render 'shared/robot', robot: @robots.first %></center></div>
+      <div class="item"><center><%= render 'shared/robot', robot: @robots.second %></center></div>
+      <div class="item"><center><%= render 'shared/robot', robot: @robots.third %></center></div>
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+  </div>
+</div>
+<h2>Robot League</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Author</th>
+      <th>Robot</th>
+      <th>Profit Factor</th>
+      <th>Drawdown</th>
+      <th>Updated</th>
+    </tr>
+  </thead>
+  <%= will_paginate @robots %>
+  <%= render @robots %>
+  <%= will_paginate @robots %>
+</table>
+<% end %>

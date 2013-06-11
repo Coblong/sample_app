@@ -36,6 +36,7 @@ describe User do
   it { should respond_to(:unfollow!) }
   it { should respond_to(:reverse_relationships) }
   it { should respond_to(:followers) }
+  it { should respond_to(:robots) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -189,6 +190,30 @@ describe User do
 
       it { should_not be_following(other_user) }
       its(:followed_users) { should_not include(other_user) }
+    end
+  end
+
+  describe "robot associations" do
+
+    before { @user.save }
+    let!(:older_robot) do 
+      FactoryGirl.create(:robot, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_robot) do
+      FactoryGirl.create(:robot, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right robots in the right order" do
+      @user.robots.should == [newer_robot, older_robot]
+    end
+
+    it "should destroy associated robots" do
+      robots = @user.robots.dup
+      @user.destroy
+      robots.should_not be_empty
+      robots.each do |robot|
+        Robot.find_by_id(robot.id).should be_nil
+      end
     end
   end
 end

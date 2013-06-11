@@ -1,16 +1,11 @@
 class StaticPagesController < ApplicationController
-  
+  before_filter :initialize_forms
+
   def home
-    if signed_in?
-      @micropost  = current_user.microposts.build
-      @feed_items = current_user.feed.paginate(page: params[:page])
-    end
-  end
-
-  def help
+    @robot_configs = RobotConfig.paginate(page: params[:page])
+    @microposts = Micropost.paginate(page: params[:page])
   end
   
-  def about
-  end
-
+#      INNER JOIN robot_configs ON robots.robot_config_id = robot_configs.id
+#      ORDER robot_configs.profit_factor desc
 end

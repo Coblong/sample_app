@@ -5,9 +5,8 @@
       <%= link_to "EA Control", home_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <%= render 'layouts/public_menus' %>
           <% if signed_in? %>
-            <%= render 'layouts/private_menus' %>
+            <%= render 'layouts/menus' %>
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
