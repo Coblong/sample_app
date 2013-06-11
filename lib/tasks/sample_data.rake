@@ -9,10 +9,10 @@ namespace :db do
   end
 
   def make_users
-    admin = User.create!(name: "Example User",
-                 email: "example@railstutorial.org",
-                 password: "foobar",
-                 password_confirmation: "foobar")
+    admin = User.create!(name: "Paul Cobley",
+                 email: "paul.cobley@gmail.com",
+                 password: "password",
+                 password_confirmation: "password")
     admin.toggle!(:admin)
     99.times do |n|
       name  = Faker::Name.name
@@ -40,5 +40,12 @@ namespace :db do
     followers      = users[3..40]
     followed_users.each { |followed| user.follow!(followed) }
     followers.each      { |follower| follower.follow!(user) }
+  end
+
+  def make_robots
+    users = User.all(limit: 6)
+    50.times do
+      users.each { |user| user.robots.create!(strategy: "PingPong") }
+    end
   end
 end

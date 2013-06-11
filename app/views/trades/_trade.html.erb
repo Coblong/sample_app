@@ -1,0 +1,15 @@
+<%  profit = @balance * trade.profit_percentage
+    @balance += @balance * trade.profit_percentage     
+%>
+<% if trade.is_disabled(@robot_config) %>
+<tr class="disabled-trade">    
+<% else %>
+<tr>
+<% end %>
+  <td><%= trade.order_id  %></td>
+  <td><%= trade.open_time.strftime("%Y-%m-%d %H:%M")  %></td>
+  <td><%= trade.direction.upcase  %></td>
+  <td><%= trade.duration  %></td>
+  <td><%= number_with_precision(profit, :precision => 2)  %></td>
+  <td><%= number_with_precision(@balance, :precision => 2)  %></td>
+</tr>

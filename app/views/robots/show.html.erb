@@ -1,0 +1,182 @@
+<% provide(:title, @robot.name) %>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+function drawChart() {
+  var data = google.visualization.arrayToDataTable(<%= raw @robot.for_equity_chart(@robot_config) -%>);
+  drawEquityChart(<%= @robot.id %>, data);
+}
+</script>
+<div class="row-fluid">
+  <div class="span8">
+    <!-- Chart -->
+    <div class="box">      
+      <div id="<%= @robot.id %>"></div>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="well details">
+      <%= render 'robot_details' %>
+    </div>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span8 well well-small">
+    <div id="hours">  
+      <table>
+        <thead>
+          <tr>
+            <th>00</th><th>01</th><th>02</th><th>03</th><th>04</th><th>05</th><th>06</th><th>07</th><th>08</th><th>09</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th>
+            <th>22</th><th>23</th>
+          </tr>
+        </thead>      
+        <%= form_for @robot_config, url: url_for(:action => 'show'), remote: true do |f| %>
+          <%= f.hidden_field :id %>
+          <tr>
+            <td><%= f.check_box :hours_00_01_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_01_02_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_02_03_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_03_04_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_04_05_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_05_06_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_06_07_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_07_08_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_08_09_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_09_10_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_10_11_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_11_12_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_12_13_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_13_14_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_14_15_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_15_16_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_16_17_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_17_18_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_18_19_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_19_20_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_20_21_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_21_22_GMT, class: 'hour_button' %></td>
+            <td><%= f.check_box :hours_22_23_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_23_00_GMT, class: 'hour_button' %></td>
+          </tr>
+        <thead>
+          <tr>
+            <td id="tokyostyle1" colspan="8">Tokyo <%= check_box_tag 'tokyo', 'yes', false, :checked => @robot_config.tokyo_selected %></td>
+            <td colspan="4"></td>
+            <td id="newyorkstyle" colspan="8">New York <%= check_box_tag 'newyork', 'yes', false, :checked => @robot_config.newyork_selected %></td>
+            <td colspan="3"></td>
+            <td id="tokyostyle2"></td>
+          </tr>
+          <tr>
+            <td colspan="7"></td>
+            <td id="londonstyle" colspan="9">London <%= check_box_tag 'london', 'yes', false, :checked => @robot_config.london_selected %></td>
+            <td colspan="8"></td>
+          </tr>
+          <tr class="spacer">
+            <th colspan="24"></th>
+          </tr>
+          <tr>
+            <td colspan="7">Sunday</td>
+            <td><input type="checkbox"/></td>
+            <td colspan="7">Monday</td>
+            <td><input type="checkbox"/></td>
+            <td colspan="7">Tuesday</td>
+            <td><input type="checkbox"/></td>
+          </tr>
+          <tr>          
+            <td colspan="7">Wednesday</td>
+            <td><input type="checkbox"/></td>
+            <td colspan="7">Thursday</td>
+            <td><input type="checkbox"/></td>
+            <td colspan="7">Friday</td>
+            <td><input type="checkbox"/></td
+          </tr>
+          <tr class="spacer">
+            <th colspan="24"></th>
+          </tr>
+        <% end %>
+          <tr>              
+              <th colspan="24" align="right"><div id="savelink" class="btn btn-link">Save</div>|<div class="btn btn-link">Download</div></th>
+            </tr>
+          </tr>
+        </thead>         
+      </table>      
+    </div>
+  </div>
+  <div class="span4 well well-small">
+    <div class="well-header">Versions</div>
+    <div class="versions">
+        <%= render partial: 'robot_configs/robot_config_version', collection: @robot.robot_configs, as: :robot_config %>
+    </div>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="accordion" id="accordion1">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree">Trades</a>
+      </div>
+      <div id="collapseThree" class="accordion-body collapse in">
+        <div class="accordion-inner">
+          <% if @robot.trades.any? %>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Order Id</th>
+                  <th>Open Time</th>
+                  <th>Type</th>
+                  <th>Duration</th>
+                  <th>Profit</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <% @balance = 100000.00 %>
+              <%= will_paginate @trades, :class => 'pagination pagination-centered' %>
+              <%= render @trades %>
+            </table>
+          <% end %>    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $('.hour_button').bind('click', function() {
+    $('form').submit();
+    //$.ajax({
+    //  type: "POST",
+    //  url: "robots",
+    //  data: $("form").serialize(), // serializes the form's elements.
+    //  success: function(data) {
+    //     $(".details").html("<%= escape_javascript(render 'robot_details') %>")
+    //     var chart_data = google.visualization.arrayToDataTable(<%= raw @robot.for_equity_chart(@robot_config) -%>);
+    //     alert(<%= raw @robot.for_equity_chart(@robot_config) -%>)
+    //     equity_chart.draw(chart_data, equity_options);
+    //  }
+    //});
+  });
+  $('#tokyo').bind('click', function() {
+    $('#robot_config_hours_00_01_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_00_01_GMT').attr('value', this.checked)
+    $('#robot_config_hours_01_02_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_02_03_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_03_04_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_04_05_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_05_06_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_06_07_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_07_08_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_23_00_GMT').attr('checked', this.checked)
+    $('form').submit();
+  });
+  $('#london').bind('click', function() {
+    $('#robot_config_hours_07_08_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_08_09_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_09_10_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_10_11_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_11_12_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_12_13_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_13_14_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_14_15_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_15_16_GMT').attr('checked', this.checked)
+    $('form').submit();
+  });
+  $('#newyork').bind('click', function() {
+    $('#robot_config_hours_12_13_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_13_14_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_14_15_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_15_16_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_16_17_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_17_18_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_18_19_GMT').attr('checked', this.checked)
+    $('#robot_config_hours_19_20_GMT').attr('checked', this.checked)
+    $('form').submit();
+  });
+</script>

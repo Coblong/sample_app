@@ -1,5 +1,61 @@
-<% if signed_in? %>
-  <%= render 'layouts/private_home' %>
-<% else %>
-  <%= render 'layouts/public_home' %>
-<% end %> 
+<% provide(:title, 'Home') %>
+<div class="row-fluid">
+  <div class="span8">
+    <!-- Highlight -->
+    <div class="box">      
+      <% if @robot_configs.any? %>
+        <div id="myCarousel" class="carousel slide">
+          <center>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+              <div class="active item"><%= render 'shared/robot_config', robot_config: @robot_configs.first %></div>              
+              <% if @robot_configs.length > 1 %>
+                <div class="item"><%= render 'shared/robot_config', robot_config: @robot_configs.second %></div>              
+              <% end %>
+              <% if @robot_configs.length > 2 %>
+                <div class="item"><%= render 'shared/robot_config', robot_config: @robot_configs.third %></div>              
+              <% end %>
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left btn-inverse" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right btn-inverse" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          </center>
+        </div>
+      <% end %>
+    </div>
+  <div class="well">
+    <% if @robot_configs.any? %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Author</th>
+            <th>Robot</th>
+            <th>Profit Factor</th>
+            <th>Drawdown</th>
+            <th>Updated</th>
+          </tr>
+        </thead>
+        <% @rank = 0 %>
+        <%= will_paginate @robot_configs %>
+          <%= render @robot_configs %>
+        <%= will_paginate @robot_configs %>
+      </table>
+    <% end %>
+  </div>
+</div>
+  <div class="span4">
+    <div class="well microposts">
+      <!-- Latest Activity -->
+      <h5>Latest Activity</h5>
+      <% if @microposts.any? %>
+        <%= will_paginate @microposts %>
+          <%= render @microposts %>
+        <%= will_paginate @microposts %>
+      <% end %>
+  </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $('.carousel').carousel().next();
+</script>

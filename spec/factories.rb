@@ -14,4 +14,13 @@ FactoryGirl.define do
     content "Lorem ipsum"
     user
   end
+
+  factory :robot do
+    user
+    symbol "GBPCAD"
+  end
+
+  factory :robot_config do
+    robot
+  end
 end

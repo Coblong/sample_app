@@ -1,0 +1,19 @@
+<h2>Robot League</h2>
+<div class="well">  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Author</th>
+        <th>Robot</th>
+        <th>Profit Factor</th>
+        <th>Drawdown</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <% @rank = 0 %>
+    <%= will_paginate @robot_configs %>
+    <%= render @robot_configs %>
+    <%= will_paginate @robot_configs %>
+  </table>
+</div>

@@ -14,10 +14,12 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
     let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+    let!(:r1) { FactoryGirl.create(:robot, user: user) }
+    let!(:r2) { FactoryGirl.create(:robot, user: user) }
 
     before { visit user_path(user) }
 
-    it { should have_selector('h1',    text: user.name) }
+    it { should have_selector('h2',    text: user.name) }
     it { should have_selector('title', text: user.name) }
 
     describe "microposts" do
@@ -127,7 +129,7 @@ describe "User pages" do
     end
     
     describe "page" do
-      it { should have_selector('h1',    text: "Update your profile") }
+      it { should have_selector('h2',    text: "Update your profile") }
       it { should have_selector('title', text: "Edit user") }
       it { should have_link('change', href: 'http://gravatar.com/emails') }
     end
@@ -166,8 +168,8 @@ describe "User pages" do
       visit users_path
     end
 
-    it { should have_selector('title', text: 'All users') }
-    it { should have_selector('h1',    text: 'All users') }
+    it { should have_selector('title', text: 'Users') }
+    it { should have_selector('h1',    text: 'Users') }
     
     describe "pagination" do
 

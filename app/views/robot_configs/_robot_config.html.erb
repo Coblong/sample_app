@@ -1,0 +1,9 @@
+    <tr>
+      <td><%= @rank += 1 %></td>
+      <td><%= link_to robot_config.robot.user.name, robot_config.robot.user %></td>
+      <td><%= link_to robot_config.robot.name, robot_path(id: robot_config.robot_id, config_id: robot_config.id) %></td>
+      <td class="center"><%= robot_config.real_profit_factor %>%</td>
+      <td class="center"><%= robot_config.real_drawdown %>%</td>
+      <td class="center"><%= robot_config.updated_at.strftime("%Y-%m-%d %H:%M")  %></td>
+    </tr>
+<% @user ||= current_user %>
