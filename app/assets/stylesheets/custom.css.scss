@@ -3,12 +3,12 @@
 /* universal */
 
 $linecolor: lightgray;
-$headerFont: aliceblue;
+$headerFont: mintcream;
 $wellcolor: mintcream;
 $headercolor: lightgray;
 $bordercolor1: black;
 $bordercolor2: maroon;
-$usercolor: powderblue;
+$usercolor: honeydew;
 $font: gray;
 
 @mixin box_sizing {
@@ -376,6 +376,15 @@ table {
       width:20%;
     }
   }
+}
+
+#robot-details-box {
+  background-color: $wellcolor;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($wellcolor), to($usercolor)); /* Chrome, Safari 4+ */
+  background-image: -webkit-linear-gradient(top, $wellcolor, $usercolor); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(top, $wellcolor, $usercolor); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top, $wellcolor, $usercolor); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom, $wellcolor, $usercolor); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
 #robot-details {  

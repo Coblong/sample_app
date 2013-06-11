@@ -15,7 +15,7 @@ function drawChart() {
     </div>
   </div>
   <div class="span4">
-    <div class="well details">
+    <div id="robot-details-box" class="well details">
       <%= render 'robot_details' %>
     </div>
   </div>
@@ -84,7 +84,10 @@ function drawChart() {
           </tr>
         <% end %>
           <tr>              
-              <th colspan="24" align="right"><div id="savelink" class="btn btn-link">Save</div>|<div class="btn btn-link">Download</div></th>
+              <th colspan="24" align="right">
+                <div id="savelink" class="btn btn-link">Save</div>|
+                <%= link_to 'Download', download_robot_config_path(@robot_config) %>
+              </th>
             </tr>
           </tr>
         </thead>         

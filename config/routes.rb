@@ -8,6 +8,9 @@ SampleApp::Application.routes.draw do
   resources :microposts
   resources :relationships, only: [:create, :destroy]
   resources :robots
+  resources :robot_configs do
+    member {get "download"}
+  end
   
   root              to: 'static_pages#home'
 
