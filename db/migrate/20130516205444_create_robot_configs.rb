@@ -1,9 +1,6 @@
 class CreateRobotConfigs < ActiveRecord::Migration
-  def up
-    drop_table :robot_configs
-  end
-
-  def down    
+  
+  def change
     create_table :robot_configs do |t|
       t.integer :robot_id
       t.integer :bars_in_test
