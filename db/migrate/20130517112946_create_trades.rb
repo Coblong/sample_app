@@ -6,7 +6,7 @@ class CreateTrades < ActiveRecord::Migration
       t.integer  :duration
       t.string   :direction
       t.integer  :order_id
-      t.decimal  :profit_percentage, :precision => 10, :scale => 8
+      t.decimal  :profit_percentage
       t.boolean  :stopped_out
 
       t.timestamps

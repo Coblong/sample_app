@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609192453) do
+ActiveRecord::Schema.define(:version => 20130612100911) do
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -37,37 +37,39 @@ ActiveRecord::Schema.define(:version => 20130609192453) do
   create_table "robot_configs", :force => true do |t|
     t.integer  "robot_id"
     t.integer  "bars_in_test"
-    t.decimal  "modelling_quality",                :precision => 2, :scale => 2
-    t.integer  "mismatched_chart_errors"
-    t.decimal  "initial_deposit",                  :precision => 2, :scale => 2
-    t.decimal  "total_net_profit",                 :precision => 2, :scale => 2
-    t.decimal  "gross_profit",                     :precision => 2, :scale => 2
-    t.decimal  "gross_loss",                       :precision => 2, :scale => 2
-    t.decimal  "profit_factor",                    :precision => 2, :scale => 2
-    t.decimal  "expected_payoff",                  :precision => 2, :scale => 2
-    t.decimal  "absolute_drawdown",                :precision => 2, :scale => 2
-    t.decimal  "maximal_drawdown",                 :precision => 2, :scale => 2
-    t.decimal  "maximal_drawdown_percentage",      :precision => 2, :scale => 2
-    t.decimal  "relative_drawdown",                :precision => 2, :scale => 2
-    t.decimal  "relative_drawdown_percentage",     :precision => 2, :scale => 2
+    t.decimal  "modelling_quality"
+    t.decimal  "mismatched_chart_errors"
+    t.decimal  "initial_deposit"
+    t.decimal  "total_net_profit"
+    t.decimal  "gross_profit"
+    t.decimal  "gross_loss"
+    t.decimal  "profit_factor"
+    t.decimal  "expected_payoff"
+    t.decimal  "absolute_drawdown"
+    t.decimal  "maximal_drawdown"
+    t.decimal  "maximal_drawdown_percentage"
+    t.decimal  "relative_drawdown"
+    t.decimal  "relative_drawdown_percentage"
     t.integer  "total_trades"
     t.integer  "short_positions_won"
     t.integer  "long_positions_won"
     t.integer  "profit_trades"
     t.integer  "loss_trades"
-    t.decimal  "largest_profit",                   :precision => 2, :scale => 2
-    t.decimal  "largest_loss",                     :precision => 2, :scale => 2
-    t.decimal  "average_profit",                   :precision => 2, :scale => 2
-    t.decimal  "average_loss",                     :precision => 2, :scale => 2
+    t.decimal  "largest_profit"
+    t.decimal  "largest_loss"
+    t.decimal  "average_profit"
+    t.decimal  "average_loss"
     t.integer  "most_consecutive_wins"
-    t.decimal  "most_consecutive_wins_in_money",   :precision => 2, :scale => 2
+    t.decimal  "most_consecutive_wins_in_money"
     t.integer  "most_consecutive_losses"
+    t.decimal  "most_consecutive_losses_in_money"
     t.integer  "average_consecutive_wins"
     t.integer  "average_consecutive_losses"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "comment"
     t.integer  "magic_number"
+    t.boolean  "hidden_orders"
     t.integer  "account_digits"
     t.integer  "fixed_lot"
     t.decimal  "risk_percentage"
@@ -78,19 +80,19 @@ ActiveRecord::Schema.define(:version => 20130609192453) do
     t.boolean  "drawdown_limiter_on"
     t.string   "drawdown_limit_mode"
     t.integer  "drawdown_limit_period"
-    t.decimal  "entry_envelopes",                  :precision => 8, :scale => 3
+    t.decimal  "entry_envelopes"
     t.integer  "envelope_period"
     t.integer  "ma_type"
     t.integer  "envelope_source"
-    t.decimal  "max_spread",                       :precision => 2, :scale => 2
-    t.decimal  "reset_envelopes",                  :precision => 8, :scale => 3
+    t.decimal  "max_spread"
+    t.decimal  "reset_envelopes"
     t.boolean  "fixed_range_stop_on"
-    t.decimal  "fixed_range_stop_ratio",           :precision => 8, :scale => 3
+    t.decimal  "fixed_range_stop_ratio"
     t.integer  "dynamic_stop_envelopes"
     t.integer  "stop_loss_pips"
     t.integer  "trailing_stop"
     t.integer  "take_profit_pips"
-    t.decimal  "target_envelopes",                 :precision => 8, :scale => 3
+    t.decimal  "target_envelopes"
     t.integer  "max_trade_duration"
     t.boolean  "ema_trend_filter"
     t.integer  "ema_trend_fast_per"
@@ -179,11 +181,9 @@ ActiveRecord::Schema.define(:version => 20130609192453) do
     t.string   "short_loss_colour"
     t.string   "short_stop_colour"
     t.string   "trailing_sl_colour"
-    t.boolean  "hidden_orders"
-    t.decimal  "most_consecutive_losses_in_money", :precision => 2, :scale => 2
     t.integer  "instance_number"
-    t.decimal  "real_profit_factor",               :precision => 2, :scale => 2
-    t.decimal  "real_drawdown",                    :precision => 2, :scale => 2
+    t.decimal  "real_profit_factor"
+    t.decimal  "real_drawdown"
     t.integer  "user_id"
   end
 
@@ -195,11 +195,10 @@ ActiveRecord::Schema.define(:version => 20130609192453) do
     t.string   "symbol"
     t.string   "timeframe"
     t.string   "strategy"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "hidden_orders"
   end
 
   add_index "robots", ["user_id", "created_at"], :name => "index_robots_on_user_id_and_created_at"
@@ -210,10 +209,10 @@ ActiveRecord::Schema.define(:version => 20130609192453) do
     t.integer  "duration"
     t.string   "direction"
     t.integer  "order_id"
-    t.decimal  "profit_percentage", :precision => 10, :scale => 10
+    t.decimal  "profit_percentage"
     t.boolean  "stopped_out"
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   add_index "trades", ["robot_id", "created_at"], :name => "index_trades_on_robot_id_and_created_at"

@@ -13,19 +13,19 @@ class AddSetFileToRobotConfigs < ActiveRecord::Migration
     add_column :robot_configs, :drawdown_limiter_on, :boolean
     add_column :robot_configs, :drawdown_limit_mode, :string
     add_column :robot_configs, :drawdown_limit_period, :integer
-    add_column :robot_configs, :entry_envelopes, :decimal, precision: 8, scale: 3
+    add_column :robot_configs, :entry_envelopes, :decimal
     add_column :robot_configs, :envelope_period, :integer
     add_column :robot_configs, :ma_type, :integer
     add_column :robot_configs, :envelope_source, :integer
-    add_column :robot_configs, :max_spread, :decimal, precision: 2, scale: 2
-    add_column :robot_configs, :reset_envelopes, :decimal, precision: 8, scale: 3
+    add_column :robot_configs, :max_spread, :decimal
+    add_column :robot_configs, :reset_envelopes, :decimal
     add_column :robot_configs, :fixed_range_stop_on, :boolean
-    add_column :robot_configs, :fixed_range_stop_ratio, :decimal, precision:8, scale: 3
+    add_column :robot_configs, :fixed_range_stop_ratio, :decimal
     add_column :robot_configs, :dynamic_stop_envelopes, :integer
     add_column :robot_configs, :stop_loss_pips, :integer
     add_column :robot_configs, :trailing_stop, :integer
     add_column :robot_configs, :take_profit_pips, :integer
-    add_column :robot_configs, :target_envelopes, :decimal, precision: 8, scale: 3
+    add_column :robot_configs, :target_envelopes, :decimal
     add_column :robot_configs, :max_trade_duration, :integer
     add_column :robot_configs, :ema_trend_filter, :boolean
     add_column :robot_configs, :ema_trend_fast_per, :integer
