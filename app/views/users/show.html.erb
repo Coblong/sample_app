@@ -26,7 +26,7 @@
     </div>
     <% if @user.microposts.any? %>
       <div class="well">
-        <h5>Microposts (<%= @user.microposts.count %>)</h5>
+        <h5>Activity (<%= @user.microposts.count %>)</h5>
         <ol class="microposts">
           <%= render @microposts %>
         </ol>        

@@ -1,8 +1,10 @@
       <!-- details -->
       <table id="robot-title">
         <tr>
+          <td>&nbsp;</td>
           <td><%= gravatar_for @robot.user, size: 52 %></td>
-          <td valign="top"><big><b><%= @robot.name %></b></big><small> by <%= link_to @robot.user.name, @robot.user %></small></td>
+          <td valign="top"><big><b><%= @robot.name %></b></big><br><small> by <%= link_to @robot.user.name, @robot.user %></small></td>
+          <td>&nbsp;</td>
         </tr>
       </table>
       <table id="robot-details">
