@@ -62,17 +62,15 @@ class RobotsController < ApplicationController
       puts 'Created raw config for user ' + @robot_config.user.name
       @robot_config.instance_number = 1
       read_from_html()    
-      optimize()
       
       begin
         @robot.save        
         micropost = current_user.microposts.build()    
         micropost.robot_config = @robot_config
-        puts 'Created micropost for user ' + micropost.robot_config.user.name
         if @robot.upload_comment.length > 0
           micropost.content = current_user.name + ' - ' + @robot.upload_comment
         else  
-          micropost.content = current_user.name + ' just uploaded a new robot'
+          micropost.content = current_user.name + ' just uploaded a new robot. Check it out...'
         end
         micropost.save
         

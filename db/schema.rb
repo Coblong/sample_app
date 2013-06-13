@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612100911) do
+ActiveRecord::Schema.define(:version => 20130612195618) do
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -185,6 +185,10 @@ ActiveRecord::Schema.define(:version => 20130612100911) do
     t.decimal  "real_profit_factor"
     t.decimal  "real_drawdown"
     t.integer  "user_id"
+    t.decimal  "real_gross_profit"
+    t.decimal  "real_gross_loss"
+    t.integer  "trade_count"
+    t.decimal  "end_balance"
   end
 
   add_index "robot_configs", ["robot_id", "created_at"], :name => "index_robot_configs_on_robot_id_and_created_at"
@@ -195,10 +199,11 @@ ActiveRecord::Schema.define(:version => 20130612100911) do
     t.string   "symbol"
     t.string   "timeframe"
     t.string   "strategy"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.datetime "start_date"
     t.datetime "end_date"
+    t.boolean  "been_optimised"
   end
 
   add_index "robots", ["user_id", "created_at"], :name => "index_robots_on_user_id_and_created_at"

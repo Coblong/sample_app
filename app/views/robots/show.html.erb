@@ -84,7 +84,12 @@ function drawChart() {
           </tr>
         <% end %>
           <tr>              
-              <th colspan="24" align="right">
+              <th colspan="4" id="auto-robot-link">
+                <% if !@robot.been_optimised %>
+                  <%= link_to 'Auto Optimise', auto_robot_config_path(@robot_config) %>
+                <% end %>
+              </th>
+              <th colspan="20" align="right">
                 <div id="savelink" class="btn btn-link">Save</div>|
                 <%= link_to 'Download', download_robot_config_path(@robot_config) %>
               </th>

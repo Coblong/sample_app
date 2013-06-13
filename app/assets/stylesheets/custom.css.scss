@@ -329,6 +329,10 @@ table {
   padding: 5px; 
 }
 
+#auto-robot-link {
+  text-align: left;
+}
+
 .btn-button {
   padding: 5px 0px;
   span {
@@ -494,6 +498,12 @@ table {
   }
 }
 
+.robot-table, td, th {
+  &.right {
+    text-align: right;    
+  }
+}
+
 .content {
   display: block;  
 }
@@ -532,9 +542,10 @@ textarea {
 
 
 #tooltip.default{
-    border:3px solid white;
     background:$usercolor;
     color:black;
+    -webkit-box-shadow: 0px 0px 4px 0px $bordercolor1; /* Android 2.3+, iOS 4.0.2-4.2, Safari 3-4 */
+    box-shadow: 10px 10px 10px 0px $bordercolor1;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:3px; 

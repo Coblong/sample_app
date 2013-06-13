@@ -18,7 +18,7 @@
             </div>
             <!-- Carousel nav -->
             <a class="carousel-control left btn-inverse" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right btn-inverse" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            <a id="right-carousel" class="carousel-control right btn-inverse" href="#myCarousel" data-slide="next">&rsaquo;</a>
           </center>
         </div>
       <% end %>
@@ -29,11 +29,11 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Author</th>
             <th>Robot</th>
-            <th>Profit Factor</th>
-            <th>Drawdown</th>
             <th>Updated</th>
+            <th class="right">Profit Factor</th>
+            <th class="right">Drawdown</th>            
+            <th class="right">Profit</th>            
           </tr>
         </thead>
         <% @rank = 0 %>
@@ -57,5 +57,5 @@
   </div>
 </div>
 <script type="text/javascript">
-  $('.carousel').carousel().next();
+  $('#myCarousel').carousel();
 </script>

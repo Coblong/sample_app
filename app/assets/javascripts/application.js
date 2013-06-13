@@ -24,7 +24,7 @@ function drawEquityChart(id, data) {
       fill: 'mintcream'
     },
     chartArea:{
-      left: 90
+      left: 110
     },
     colors: ['maroon'],
     animation:{
