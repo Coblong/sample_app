@@ -1,5 +1,10 @@
 <%
-  style_class = robot_config.instance_number == 1 ? 'btn-info' : 'btn-warning' 
+  robot_config = micropost.robot_config
+  if micropost.parent_id != nil
+    style_class = 'btn-default'
+  else
+    style_class = robot_config.instance_number == 1 ? 'btn-info' : 'btn-success' 
+  end
   title = "<table>"
   title = "<tr><td>Created by</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.robot.user.name + "</td></tr>"
   title += "<tr><td>Created at</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.created_date + "</td></tr>"

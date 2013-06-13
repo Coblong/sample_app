@@ -1,11 +1,19 @@
 <% @user ||= current_user %>
 <% provide(:title, 'Users') %>
 <div class="row-fluid">
+  <div class="span4">
+  </div>
 <% if @users.any? %>
-  <div class="span6 offset3 well users">
-    <h5>Users</h5>
+  <div class="span8">
+    <% if @users.any? %>
+      <ul class="users">
+        <%= will_paginate %>
+        <%= render @users %>
+      </ul>
       <%= will_paginate %>
-      <%= render @users %>
-  </div>    
+    <% end %>
+  </div>
 <% end %>
 </div>  
+
+

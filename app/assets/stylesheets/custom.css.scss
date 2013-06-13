@@ -38,6 +38,10 @@ textarea {
   text-align: center;
 }
 
+.right {
+  text-align: right;
+}
+
 .center h1 {
   margin-bottom: 10px;
 }
@@ -133,8 +137,6 @@ footer {
   @include box_sizing;
 }
 
-/* sidebar */
-
 .feed {
   width: 30%;
   display:inline-block;
@@ -213,6 +215,10 @@ aside {
 .gravatar {
   float: left;
   margin-right: 10px;
+}
+
+.inline {
+  display:inline;
 }
 
 .stats {
@@ -390,6 +396,11 @@ table {
   }
 }
 
+.accordion-heading {
+  background-color: $wellcolor;
+  border: 1px solid $linecolor;    
+}
+
 #robot-details-box {
   background-color: $wellcolor;
   background-image: -webkit-gradient(linear, left top, left bottom, from($wellcolor), to($usercolor)); /* Chrome, Safari 4+ */
@@ -421,12 +432,23 @@ table {
   }
 }
 
+.carousel-control {
+  color: $bordercolor1;
+  background-color: $wellcolor;
+  border: 2px solid $wellcolor;    
+}
+.carousel-control:hover {
+  color: black;
+  background-color: $wellcolor;
+  border: 2px solid $wellcolor;    
+}
 .details {
   width: 95%;  
   border: 1px solid $linecolor;    
   background-color: $usercolor;
   -webkit-box-shadow: 0px 0px 4px 0px $bordercolor1; /* Android 2.3+, iOS 4.0.2-4.2, Safari 3-4 */
-  box-shadow: 0px 0px 4px 0px $bordercolor1;
+  box-shadow: 0px 0px 5px 0px $bordercolor1;
+  margin-top: 1px;
   padding: 5px;
   table {
     margin: 0px;
@@ -472,8 +494,11 @@ table {
 .users {
   list-style: none;
   margin: 0;
-  text-align:left;
+  text-align:left;  
   li {
+    span {
+      display:block-inline;
+    }
     overflow: auto;
     padding: 10px 0;
     border-top: 1px solid $linecolor;
@@ -489,12 +514,16 @@ table {
 
 /* microposts */
 
-.microposts {
+.microposts {  
   list-style: none;
   margin: 0px 0 0 0;
   li {
+    width:100%;
     padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    border-top: 1px solid $linecolor;
+    &:first-child {
+      border-top: none;
+  }
   }
 }
 
@@ -508,7 +537,7 @@ table {
   display: block;  
 }
 .timestamp {
-  color: $grayLight;
+  color: $grayLight;  
 }
 .gravatar {
   float: left;

@@ -1,7 +1,6 @@
   <li>
-  <%= gravatar_for user, size: 52 %>
-  <%= link_to user.name, user %>
-  <%= render "shared/stats", user: user %>
+    <span><%= gravatar_for user, size: 52 %><%= link_to user.name, user %><br>I'm gonna get there mutha fuckas!</span>
+    <%= render "shared/inline_stats", user: user %>
   <% if current_user.admin? && !current_user?(user) %>
         | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
