@@ -8,7 +8,6 @@
         </tr>
       </table>
       <table id="robot-details">
-<% if @robot_config.instance_number == 1 %>
         <tr>          
           <td width="45%">Gross Profit</td>
           <td><%= number_to_currency(@robot_config.real_gross_profit, unit: "&pound;") %></td>
@@ -19,38 +18,16 @@
         </tr>
         <tr>          
           <td>Profit Factor</td>
-          <td><%= @robot_config.profit_factor %>% (<%= @robot_config.real_profit_factor %>%)</td>
+          <td><%= @robot_config.display_profit_factor %></td>
         </tr>
         <tr>
           <td>Drawdown</td>
-          <td><%= @robot_config.relative_drawdown %>% (<%= @robot_config.real_drawdown %>%)</td>
+          <td><%= @robot_config.display_drawdown %></td>
         </tr>
         <tr>
           <td>Trades</td>
           <td><%= @robot_config.trade_count.to_s %></td>
         </tr>
-<% else %>
-        <tr>          
-          <td width="45%">Gross Profit</td>
-          <td><%= number_to_currency(@robot_config.real_gross_profit, unit: "&pound;") %></td>
-        </tr>
-        <tr>          
-          <td width="45%">Net Profit</td>
-          <td><%= number_to_currency(@robot_config.real_gross_profit - @robot_config.real_gross_loss, unit: "&pound;") %></td>
-        </tr>
-        <tr>
-          <td>Profit Factor</td>
-          <td><%= @robot_config.real_profit_factor %>%</td>
-        </tr>
-        <tr>
-          <td>Drawdown</td>
-          <td><%= @robot_config.real_drawdown %>%</td>          
-        </tr>
-        <tr>
-          <td>Trades</td>
-          <td><%= @robot_config.trade_count.to_s %></td>
-        </tr>
-<% end %>        
         </tr>
         <tr>
           <td>Updated</td>

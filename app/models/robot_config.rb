@@ -31,6 +31,22 @@ class RobotConfig < ActiveRecord::Base
     created_at.strftime("%d.%m.%y")
   end
 
+  def display_profit_factor
+    if instance_number == 1
+      profit_factor.to_s + '% (' + real_profit_factor.to_s + '%)'
+    else
+      real_profit_factor.to_s
+    end
+  end
+
+  def display_drawdown
+    if instance_number == 1
+      relative_drawdown.to_s + '% (' + real_drawdown.to_s + '%)'
+    else
+      real_drawdown.to_s
+    end
+  end
+
   def as_set_file
 
     output = '_EA_=" --- Thanks for using EA Control --- "

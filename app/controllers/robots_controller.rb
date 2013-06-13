@@ -49,6 +49,11 @@ class RobotsController < ApplicationController
       end
     end
     @trades = @robot.trades.paginate(page: params[:page])
+
+
+    puts '------------------------------------------------------'
+    puts @robot_config.microposts.first.content
+    puts '------------------------------------------------------'
   end
 
   def create
@@ -70,7 +75,7 @@ class RobotsController < ApplicationController
         if @robot.upload_comment.length > 0
           micropost.content = current_user.name + ' - ' + @robot.upload_comment
         else  
-          micropost.content = current_user.name + ' just uploaded a new robot. Check it out...'
+          micropost.content = current_user.name + ' just uploaded a new robot.<br>Check it out...'
         end
         micropost.save
         

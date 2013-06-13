@@ -31,7 +31,7 @@ function drawChart() {
             <th>22</th><th>23</th>
           </tr>
         </thead>      
-        <%= form_for @robot_config, url: url_for(:action => 'show'), remote: true do |f| %>
+        <%= form_for @robot_config, url: url_for(:action => 'show'), remote: true, html: {id: 'hour_form'} do |f| %>
           <%= f.hidden_field :id %>
           <tr>
             <td><%= f.check_box :hours_00_01_GMT, class: 'hour_button' %></td><td><%= f.check_box :hours_01_02_GMT, class: 'hour_button' %></td>
@@ -109,36 +109,14 @@ function drawChart() {
 <div class="row-fluid">
   <div class="accordion" id="accordion1">
     <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree">Trades</a>
-      </div>
-      <div id="collapseThree" class="accordion-body collapse in">
-        <div class="accordion-inner">
-          <% if @robot.trades.any? %>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Order Id</th>
-                  <th>Open Time</th>
-                  <th>Type</th>
-                  <th>Duration</th>
-                  <th>Profit</th>
-                  <th>Balance</th>
-                </tr>
-              </thead>
-              <% @balance = 100000.00 %>
-              <%= will_paginate @trades, :class => 'pagination pagination-centered' %>
-              <%= render @trades %>
-            </table>
-          <% end %>    
-        </div>
-      </div>
+      <%= render partial: 'microposts/microposts_accordian' %>
+      <%= render partial: 'trades/trades_accordian' %>
     </div>
   </div>
 </div>
 <script type="text/javascript">
   $('.hour_button').bind('click', function() {
-    $('form').submit();
+    $('#hour_form').submit();
     //$.ajax({
     //  type: "POST",
     //  url: "robots",
@@ -162,7 +140,7 @@ function drawChart() {
     $('#robot_config_hours_06_07_GMT').attr('checked', this.checked)
     $('#robot_config_hours_07_08_GMT').attr('checked', this.checked)
     $('#robot_config_hours_23_00_GMT').attr('checked', this.checked)
-    $('form').submit();
+    $('#hour_form').submit();
   });
   $('#london').bind('click', function() {
     $('#robot_config_hours_07_08_GMT').attr('checked', this.checked)
@@ -174,7 +152,7 @@ function drawChart() {
     $('#robot_config_hours_13_14_GMT').attr('checked', this.checked)
     $('#robot_config_hours_14_15_GMT').attr('checked', this.checked)
     $('#robot_config_hours_15_16_GMT').attr('checked', this.checked)
-    $('form').submit();
+    $('#hour_form').submit();
   });
   $('#newyork').bind('click', function() {
     $('#robot_config_hours_12_13_GMT').attr('checked', this.checked)
@@ -185,6 +163,6 @@ function drawChart() {
     $('#robot_config_hours_17_18_GMT').attr('checked', this.checked)
     $('#robot_config_hours_18_19_GMT').attr('checked', this.checked)
     $('#robot_config_hours_19_20_GMT').attr('checked', this.checked)
-    $('form').submit();
+    $('#hour_form').submit();
   });
 </script>

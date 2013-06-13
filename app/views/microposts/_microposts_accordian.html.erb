@@ -1,0 +1,18 @@
+<div class="accordion-heading">
+  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">Comments</a>
+</div>
+<div id="collapseOne" class="accordion-body collapse in">
+  <div class="accordion-inner">
+    <div class="span8 microposts">
+      <%= render partial: 'microposts/robot_config_micropost', collection: @robot_config.microposts, as: :micropost %>
+      <br>
+    </div>    
+    <div class="span4">
+      <%= form_tag microposts_path do %>
+        <%= hidden_field_tag :parent_id, @robot_config.microposts.first.id %>
+        <%= text_area_tag :content, nil, placeholder: "Write a comment..." %>
+        <%= submit_tag "Post", class: "btn btn-small btn-primary" %>
+      <% end %>      
+    </div>    
+  </div>  
+</div>

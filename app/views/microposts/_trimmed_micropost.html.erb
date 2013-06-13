@@ -1,5 +1,10 @@
 <li>
-  <span class="content"><%= simple_format(micropost.content) %></span>
+  <% if micropost.parent_id != nil 
+    content = truncate(micropost.content, :length => 150, separator: ' ', omission: '...(continued)')
+  else
+    content = micropost.content
+  end %>
+  <span class="content"><%= simple_format(content) %></span>
   <% if micropost.robot_config != nil %>
     <div class="versions">
       <%= render partial: 'robot_configs/robot_config_button', locals: {micropost: micropost} %>
@@ -8,5 +13,4 @@
   <span class="timestamp">
     Posted by <%= link_to micropost.user.name, micropost.user %> <%= time_ago_in_words(micropost.created_at) %> ago.
   </span>
-  <%= render 'shared/delete_post', micropost: micropost %>
 </li>

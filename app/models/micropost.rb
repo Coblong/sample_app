@@ -1,9 +1,11 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content   
+  attr_accessible :content, :parent_id   
   belongs_to :user
   belongs_to :robot_config
-  
-  validates :content, presence: true, length: { maximum: 140 }
+  belongs_to :parent, class_name: 'Micropost'
+  has_many :children, class_name: 'Micropost', foreign_key: "parent_id"
+
+  validates :content, presence: true, length: { maximum: 500 }
   validates :user_id, presence: true  
   
   default_scope order: 'microposts.created_at DESC'

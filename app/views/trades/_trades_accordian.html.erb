@@ -1,0 +1,24 @@
+<div class="accordion-heading">
+  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree">Trades</a>
+</div>
+<div id="collapseThree" class="accordion-body collapse">
+  <div class="accordion-inner">
+    <% if @robot.trades.any? %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Order Id</th>
+            <th>Open Time</th>
+            <th>Type</th>
+            <th>Duration</th>
+            <th>Profit</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <% @balance = 100000.00 %>
+        <%= will_paginate @trades, :class => 'pagination pagination-centered' %>
+        <%= render @trades %>
+      </table>
+    <% end %>    
+  </div>
+</div>

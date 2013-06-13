@@ -16,6 +16,7 @@ class RobotConfigsController < ApplicationController
   def optimise
     robot_config = @robot_config.dup
     robot_config.instance_number = 2
+    robot_config.user = current_user
     gross_profit = 0
     gross_loss = 0
 
@@ -60,7 +61,7 @@ class RobotConfigsController < ApplicationController
 
     micropost = current_user.microposts.build()    
     micropost.robot_config = robot_config
-    micropost.content = current_user.name + ' just optimised a robot. Check it out...'
+    micropost.content = robot_config.user.name + ' just optimised a robot.<br>Check it out...'
     micropost.save
   end
 
