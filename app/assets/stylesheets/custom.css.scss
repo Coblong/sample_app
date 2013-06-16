@@ -9,6 +9,7 @@ $headercolor: lightgray;
 $bordercolor1: black;
 $bordercolor2: maroon;
 $usercolor: honeydew;
+$usercolor2: mintcream;
 $font: gray;
 
 @mixin box_sizing {
@@ -398,7 +399,11 @@ table {
 
 .accordion-heading {
   background-color: $wellcolor;
-  border: 1px solid $linecolor;    
+  border: 1px solid $linecolor;
+}
+
+.accordion-inner {
+  padding: 0px 20px;
 }
 
 #robot-details-box {
@@ -516,14 +521,43 @@ table {
 
 .microposts {  
   list-style: none;
-  margin: 0px 0 0 0;
+  margin: 0px;
   li {
     width:100%;
-    padding: 10px 0;
+    padding: 10px 0px;
     border-top: 1px solid $linecolor;
     &:first-child {
-      border-top: none;
+      padding-top: 1px 0px 0px 0px;
+      border: none;
+      text-align: right;
+      a {
+        font-weight: bold;
+      }
+    }
   }
+}
+
+.child-microposts {  
+  -webkit-box-shadow: 2px 2px 0px 0px $linecolor; /* Android 2.3+, iOS 4.0.2-4.2, Safari 3-4 */
+  box-shadow: 2px 2px 0px 0px $linecolor;
+  margin: 5px;  
+  width:100%;
+  tr {
+    text-align:left;    
+  }
+  td {  
+    padding: 10px;   
+    &.posted {
+      text-align: right;
+    }         
+  }
+  background-color: $usercolor;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  &.mine {
+    background-color: $usercolor2;
+    -webkit-box-shadow: -2px 2px 0px 0px $linecolor; /* Android 2.3+, iOS 4.0.2-4.2, Safari 3-4 */
+    box-shadow: -2px 2px 0px 0px $linecolor;    
   }
 }
 
@@ -536,13 +570,16 @@ table {
 .content {
   display: block;  
 }
+
 .timestamp {
   color: $grayLight;  
 }
+
 .gravatar {
   float: left;
   margin-right: 10px;
 }
+
 textarea {
   height: 100px;
   margin-bottom: 5px;

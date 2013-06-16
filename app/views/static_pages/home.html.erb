@@ -29,9 +29,10 @@
         <thead>
           <tr>
             <th>#</th>
+            <th>Author</th>
             <th>Robot</th>
             <th>Updated</th>
-            <th class="right">Profit Factor</th>
+            <th class="right" nowrap>Profit Factor</th>
             <th class="right">Drawdown</th>            
             <th class="right">Profit</th>            
           </tr>
@@ -49,7 +50,7 @@
       <!-- Latest Activity -->
       <h5>Latest Activity</h5>
       <% if @microposts.any? %>
-        <%= will_paginate @microposts %>
+        <%= will_paginate @microposts, param_name: 'microposts_page' %>
           <%= render partial: 'microposts/trimmed_micropost', collection: @microposts, as: :micropost %>
         <%= will_paginate @microposts %>
       <% end %>

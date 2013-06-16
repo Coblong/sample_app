@@ -1,0 +1,33 @@
+<% if micropost.user == current_user %>
+<table class="child-microposts mine">
+  <tr>
+    <td width="52"><%= gravatar_for micropost.user, size: 52 %></td>
+    <td>
+      <%= simple_format(micropost.content) %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <span class="timestamp">
+        Posted by <%= link_to micropost.user.name, micropost.user %> <%= time_ago_in_words(micropost.created_at) %> ago.
+      </span>
+    </td>
+  </tr>
+</table>
+<% else %>
+<table class="child-microposts">
+  <tr>      
+    <td>
+      <%= simple_format(micropost.content) %>
+    </td>
+    <td width="52"><%= gravatar_for micropost.user, size: 52 %></td>
+  </tr>
+  <tr>
+    <td class="posted" colspan="2">
+      <span class="timestamp">
+        Posted by <%= link_to micropost.user.name, micropost.user %> <%= time_ago_in_words(micropost.created_at) %> ago.
+      </span>
+    </td>    
+  </tr>
+</table>
+<% end %>

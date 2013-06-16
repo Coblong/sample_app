@@ -16,7 +16,7 @@ module RobotsHelper
     node_name = ''
     looking_at_trades = false
     trade_map = Hash.new        
-    previous_trade_balance = 100000
+    previous_trade_balance = 0
 
     # Read the report line by line and set the relavant boolean to dictate which fieldto set next
     report.css('tr').each do |row|
@@ -63,11 +63,19 @@ module RobotsHelper
           trade.direction = 'short'
           trade.open_time = trade_time
         elsif trade_type == "close" or trade_type == "close at stop" or trade_type == 't/p'
+          if previous_trade_balance == 0 
+            previous_trade_balance = trade_balance - trade_profit
+            puts 'Setting start balance to ' + (trade_balance - trade_profit).to_s
+          end
           trade.duration = (trade_time - trade.open_time).to_i / 60
           trade.stopped_out = false
           trade.profit_percentage = trade_profit / previous_trade_balance
           previous_trade_balance = trade_balance
         elsif trade_type == "s/l"
+          if previous_trade_balance == 0 
+            previous_trade_balance = trade_balance + trade_profit
+            puts 'Setting start balance to ' + (trade_balance + trade_profit).to_s
+          end
           trade.duration = (trade_time.to_i - trade.open_time.to_i) / 60
           trade.stopped_out = true
           trade.profit_percentage = trade_profit / previous_trade_balance

@@ -5,13 +5,19 @@ class MicropostsController < ApplicationController
   def create
 
     @micropost = current_user.microposts.build(params[:micropost])    
-    if params[:parent_id] != nil
+    if params[:robot_config_id] != nil
+      puts 'Creating a new post under the robot config'      
+      @micropost.content = params[:content]
+      parent_micropost = RobotConfig.find(params[:robot_config_id]).microposts.first 
+      parent_micropost.robot_config.microposts << @micropost
+    elsif params[:parent_id] != nil
+      puts 'Creating a new post under the post'
       parent_micropost = Micropost.find(params[:parent_id]) 
-      @micropost.robot_config_id = parent_micropost.robot_config_id
       @micropost.content = params[:content]
       parent_micropost.children << @micropost
     else
-      @micropost = current_user.microposts.build(params[:micropost])    
+      puts 'Creating a new post'
+      @micropost.content = params[:content]
     end
 
     if !@micropost.valid?
@@ -27,7 +33,7 @@ class MicropostsController < ApplicationController
     if parent_micropost == nil
       redirect_to root_url 
     else
-      redirect_to @micropost.robot_config.robot, :config_id => @micropost.robot_config_id
+      redirect_to parent_micropost.robot_config.robot, :config_id => parent_micropost.robot_config_id
     end
   end
 

@@ -1,13 +1,24 @@
 <li>
-  <% if micropost.parent_id != nil 
-    content = truncate(micropost.content, :length => 150, separator: ' ', omission: '...(continued)')
-  else
-    content = micropost.content
-  end %>
-  <span class="content"><%= simple_format(content) %></span>
-  <% if micropost.robot_config != nil %>
+  <% 
+    if micropost.robot_config != nil 
+      robot_config = micropost.robot_config
+      content = micropost.content    
+    else
+      if micropost.parent_id != nil 
+        content = truncate(micropost.content, :length => 150, separator: ' ', omission: '...(continued)')
+        robot_config = micropost.robot_config
+        if robot_config == nil
+          robot_config = micropost.parent.robot_config
+        end        
+      end
+    end %>
+  
+  <% if robot_config == nil %>
+    <span class="content"><%= link_to simple_format(micropost.content), micropost.user %></span>
+  <% else %>
+    <span class="content"><%= simple_format(content) %></span>
     <div class="versions">
-      <%= render partial: 'robot_configs/robot_config_button', locals: {micropost: micropost} %>
+      <%= render partial: 'robot_configs/robot_config_button', locals: {micropost: micropost, robot_config: robot_config} %>
     </div>
   <% end %>
   <span class="timestamp">

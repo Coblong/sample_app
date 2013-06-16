@@ -2,17 +2,25 @@
   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">Comments</a>
 </div>
 <div id="collapseOne" class="accordion-body collapse in">
-  <div class="accordion-inner">
-    <div class="span8 microposts">
-      <%= render partial: 'microposts/robot_config_micropost', collection: @robot_config.microposts, as: :micropost %>
-      <br>
-    </div>    
-    <div class="span4">
-      <%= form_tag microposts_path do %>
-        <%= hidden_field_tag :parent_id, @robot_config.microposts.first.id %>
-        <%= text_area_tag :content, nil, placeholder: "Write a comment..." %>
-        <%= submit_tag "Post", class: "btn btn-small btn-primary" %>
-      <% end %>      
+  <div class="accordion-inner">    
+    <div class="microposts">      
+      <li><a href class="btn btn-link">Create New</a></li>
+      <li><a href="#new-post" role="button" class="btn btn-link" data-toggle="modal">Create New</a> 
+      <!-- Modal -->
+      <div id="new-post" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="new-postLabel" aria-hidden="true">
+        <div class="well">
+          Create a new post
+          <%= form_tag microposts_path do %>
+            <div class="modal-body">      
+              <%= text_area_tag :content, nil, placeholder: "Write a comment..." %>        
+            </div>
+            <div class="modal-footer">
+              <%= submit_tag "Post", class: "btn btn-small btn-primary" %>
+            </div>
+          <% end %>      
+        </div>
+      </div>
+      <%= render partial: 'microposts/micropost', collection: microposts %>
     </div>    
   </div>  
 </div>

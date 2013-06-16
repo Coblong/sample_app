@@ -109,7 +109,7 @@ function drawChart() {
 <div class="row-fluid">
   <div class="accordion" id="accordion1">
     <div class="accordion-group">
-      <%= render partial: 'microposts/microposts_accordian' %>
+      <%= render partial: 'microposts/microposts_accordian', locals: {microposts: @robot_config.microposts} %>
       <%= render partial: 'trades/trades_accordian' %>
     </div>
   </div>

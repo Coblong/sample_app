@@ -1,12 +1,29 @@
 <li>
-  <span class="content"><%= simple_format(micropost.content) %></span>
-  <% if micropost.robot_config != nil %>
-    <div class="versions">
-      <%= render partial: 'robot_configs/robot_config_button', locals: {micropost: micropost} %>
+  <div class="well">
+    <%= gravatar_for micropost.user, size: 52 %>
+    <span class="content"><%= simple_format(micropost.content) %></span>
+    <span class="timestamp">
+      Posted by <%= link_to micropost.user.name, micropost.user %> <%= time_ago_in_words(micropost.created_at) %> ago.
+    </span>
+    <a href="#reply<%= micropost.id %>" role="button" class="btn-link" data-toggle="modal">reply</a> 
+    <!-- Modal -->
+    <div id="reply<%= micropost.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="reply<%= micropost.id %>Label" aria-hidden="true">
+       <div class="well">
+        <%= simple_format(micropost.content) %>
+         <%= form_tag microposts_path do %>
+          <div class="modal-body">      
+            <%= hidden_field_tag :parent_id, micropost.id %>
+            <%= text_area_tag :content, nil, placeholder: "Write a comment..." %>        
+          </div>
+          <div class="modal-footer">
+            <%= submit_tag "Post", class: "btn btn-small btn-primary" %>
+          </div>
+        <% end %>      
+      </div>
     </div>
-  <% end %>
-  <span class="timestamp">
-    Posted by <%= link_to micropost.user.name, micropost.user %> <%= time_ago_in_words(micropost.created_at) %> ago.
-  </span>
-  <%= render 'shared/delete_post', micropost: micropost %>
+    <%= render 'shared/delete_post', micropost: micropost %>
+    <% if micropost.children.any? %>
+      <%= render partial: 'microposts/child_micropost', collection: micropost.children, as: :micropost %>
+    <% end %>
+  </div>
 </li>

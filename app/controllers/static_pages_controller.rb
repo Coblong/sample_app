@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
   def home
     @robot_configs = RobotConfig.paginate(page: params[:page])
-    @microposts = Micropost.paginate(page: params[:page])
+    @microposts = Micropost.paginate(page: params[:microposts_page])
   end
   
 #      INNER JOIN robot_configs ON robots.robot_config_id = robot_configs.id

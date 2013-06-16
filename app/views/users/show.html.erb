@@ -24,13 +24,14 @@
         </table>
       <% end %>
     </div>
-    <% if @user.microposts.any? %>
-      <div class="well">
-        <h5>Activity (<%= @user.microposts.count %>)</h5>
-        <ol class="microposts">
-          <%= render @microposts %>
-        </ol>        
-        </div>
-    <% end %>
   </div>
 </div>
+<% if @user.microposts.any? %>
+  <div class="row-fluid">
+    <div class="accordion" id="accordion1">
+      <div class="accordion-group">
+        <%= render partial: 'microposts/microposts_accordian', locals: {microposts: @user.microposts} %>
+      </div>
+    </div>
+  </div>
+<% end %>
