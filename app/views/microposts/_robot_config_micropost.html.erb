@@ -1,8 +1,0 @@
-<li>
-  <%= gravatar_for micropost.user, size: 52 %>
-  <span class="content"><%= simple_format(micropost.content) %></span>
-  <span class="timestamp right">
-    Posted by <%= link_to micropost.user.name, micropost.user %> <%= time_ago_in_words(micropost.created_at) %> ago.
-  </span>
-  <%= render 'shared/delete_post', micropost: micropost %>
-</li>
