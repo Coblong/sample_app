@@ -1,7 +1,9 @@
     <tr>
       <td><%= @rank += 1 %></td>
+      <% if @show_all_columns %>
       <td><%= link_to robot_config.user.name, user_path(robot_config.user) %></td>
-      <td><%= link_to robot_config.robot.name, robot_path(id: robot_config.robot_id, config_id: robot_config.id) %></td>
+      <% end %>
+      <td><%= link_to robot_config.robot.name, robot_config %></td>
       <td nowrap><%= robot_config.updated_at.strftime("%Y-%m-%d %H:%M")  %></td>
       <td class="right"><%= robot_config.real_profit_factor %>%</td>
       <td class="right"><%= robot_config.real_drawdown %>%</td>

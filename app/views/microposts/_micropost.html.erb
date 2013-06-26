@@ -1,3 +1,4 @@
+<% if micropost.parent_id == nil %>
 <li>
   <div class="well">
     <%= gravatar_for micropost.user, size: 52 %>
@@ -14,8 +15,6 @@
           <div class="modal-body">      
             <%= hidden_field_tag :parent_id, micropost.id %>
             <%= text_area_tag :content, nil, placeholder: "Write a comment..." %>        
-          </div>
-          <div class="modal-footer">
             <%= submit_tag "Post", class: "btn btn-small btn-primary" %>
           </div>
         <% end %>      
@@ -27,3 +26,4 @@
     <% end %>
   </div>
 </li>
+<% end %>

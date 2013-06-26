@@ -7,13 +7,13 @@
   title = "<table>"
   title = "<tr><td>Created by</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.robot.user.name + "</td></tr>"
   title += "<tr><td>Created at</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.created_date + "</td></tr>"
-  title += "<tr><td>Profit factor</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.profit_factor.to_s + "%</td></tr>"
-  title += "<tr><td>Drawdown</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.relative_drawdown.to_s + "%</td></tr>"
+  title += "<tr><td>Profit factor</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.real_profit_factor.to_s + "%</td></tr>"
+  title += "<tr><td>Drawdown</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.real_drawdown.to_s + "%</td></tr>"
   title += "<tr><td>Profit</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + number_to_currency(robot_config.real_gross_profit - robot_config.real_gross_loss, unit: '&pound;') + "%</td></tr>"
   title += "</table>"
 %>
 <a href="/robots/<%= robot_config.robot_id %>?config_id=<%= robot_config.id %>" title="<%= title %>" class="btn btn-small btn-block btn-button <%= style_class %>">
   <span><%= robot_config.robot.name %></span>
-  <span><%= robot_config.profit_factor %>%</span>
-  <span><%= robot_config.relative_drawdown %>%</span>
+  <span><%= robot_config.real_profit_factor %>%</span>
+  <span><%= robot_config.real_drawdown %>%</span>
 </a>

@@ -7,6 +7,7 @@ class Trade < ActiveRecord::Base
   end
 
   def is_disabled(robot_config)
+
     if (!robot_config.hours_00_01_GMT and open_time.hour.to_i == offset_hour(robot_config, 0)) or
        (!robot_config.hours_01_02_GMT and open_time.hour.to_i == offset_hour(robot_config, 1)) or
        (!robot_config.hours_02_03_GMT and open_time.hour.to_i == offset_hour(robot_config, 2)) or

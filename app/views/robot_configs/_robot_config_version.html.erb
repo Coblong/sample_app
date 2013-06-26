@@ -18,10 +18,10 @@
   title += "<tr><td>Created at</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.created_date + "</td></tr>"
   title += "<tr><td>Profit factor</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.real_profit_factor.to_s + "%</td></tr>"
   title += "<tr><td>Drawdown</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + robot_config.real_drawdown.to_s + "%</td></tr>"
-  title += "<tr><td>Profit</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + number_to_currency(robot_config.real_gross_profit - robot_config.real_gross_loss, unit: '&pound;') + "%</td></tr>"
+  title += "<tr><td>Profit</td><td>&nbsp;&nbsp;:&nbsp;&nbsp;</td><td>" + number_to_currency(robot_config.real_gross_profit - robot_config.real_gross_loss, unit: '&pound;') + "</td></tr>"
   title += "</table>"
 %>
-<a href="<%= robot_config.robot_id %>?config_id=<%= robot_config.id %>" title="<%= title %>" class="btn btn-small btn-block btn-version <%= styleclass %>">
+<a href="<%= robot_config.id %>" title="<%= title %>" class="btn btn-small btn-block btn-version <%= styleclass %>">
   <span><i class="<%= icon %>"></i></span>
   <span><%= name %></span>
   <span><%= robot_config.real_profit_factor %>%</span>

@@ -30,7 +30,7 @@
   <div class="row-fluid">
     <div class="accordion" id="accordion1">
       <div class="accordion-group">
-        <%= render partial: 'microposts/microposts_accordian', locals: {microposts: @user.microposts} %>
+        <%= render partial: 'microposts/microposts_accordian', locals: {microposts: @user.microposts, robot_config: nil} %>
       </div>
     </div>
   </div>

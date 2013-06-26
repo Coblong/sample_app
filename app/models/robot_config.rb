@@ -2,6 +2,7 @@ class RobotConfig < ActiveRecord::Base
   belongs_to :robot
   belongs_to :user
   has_many :microposts, dependent: :destroy, :autosave => true
+  attr_accessor :is_dirty
   validates :robot_id, presence: true  
   validates :user_id, presence: true  
   
@@ -45,6 +46,18 @@ class RobotConfig < ActiveRecord::Base
     else
       real_drawdown.to_s
     end
+  end
+
+  def display_gross_profit
+    number_to_currency(real_gross_profit, unit: "&pound;")
+  end
+
+  def net_profit
+    real_gross_profit - real_gross_loss
+  end
+
+  def display_net_profit
+    number_to_currency(net_profit, unit: "&pound;")
   end
 
   def as_set_file

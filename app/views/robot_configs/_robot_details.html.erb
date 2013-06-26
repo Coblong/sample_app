@@ -1,0 +1,38 @@
+      <!-- details -->
+      <table id="robot-title">
+        <tr>
+          <td>&nbsp;</td>
+          <td><%= gravatar_for @robot.user, size: 52 %></td>
+          <td valign="top"><big><b><%= @robot.name %></b></big><br><small> by <%= link_to @robot.user.name, @robot.user %></small></td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <table id="robot-details">
+        <tr>          
+          <td width="45%">Gross Profit</td>
+          <td><%= @robot_config.display_gross_profit %></td>
+        </tr>
+        <tr>          
+          <td width="45%">Net Profit</td>
+          <td class="<%= if @robot_config.net_profit < 0 
+              'negative' 
+             end %>"><%= @robot_config.display_net_profit %></td>          
+        </tr>
+        <tr>          
+          <td>Profit Factor</td>
+          <td><%= @robot_config.display_profit_factor %></td>
+        </tr>
+        <tr>
+          <td>Drawdown</td>
+          <td><%= @robot_config.display_drawdown %></td>
+        </tr>
+        <tr>
+          <td>Trades</td>
+          <td><%= @robot_config.trade_count.to_s %></td>
+        </tr>
+        </tr>
+        <tr>
+          <td>Updated</td>
+          <td><%= @robot.updated_date  %></td>
+        </tr>
+      </table>

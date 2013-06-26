@@ -3,16 +3,15 @@
 </div>
 <div id="collapseThree" class="accordion-body collapse">
   <div class="accordion-inner">
-    <% if @robot.trades.any? %>
+    <% if @trades.any? %>
       <table class="table table-striped">
         <thead>
           <tr>
             <th>Order Id</th>
             <th>Open Time</th>
             <th>Type</th>
-            <th>Duration</th>
-            <th>Profit</th>
-            <th>Balance</th>
+            <th class="right">Profit</th>
+            <th class="right">Balance</th>
           </tr>
         </thead>
         <% @balance = 100000.00 %>
